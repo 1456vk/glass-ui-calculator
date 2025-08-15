@@ -23,3 +23,8 @@ A modern and responsive calculator built using **HTML**, **CSS**, and **JavaScri
 1. Clone the repository:
    ```bash
    git clone https://github.com/1456vk/glass-ui-calculator.git
+📬 Contact
+
+Swami Vivekanand
+📧 Email: swamivivek1235anand25@gmail.com
+🌐 GitHub: 1456vk
