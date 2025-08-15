@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Glass UI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-size: 200% 200%;
+            animation: gradientMove 6s ease infinite;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        @keyframes gradientMove {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+        input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        input:focus {
+            border-color: #ff416c;
+            box-shadow: 0 0 8px rgba(255,65,108,0.5);
+        }
+        .btn {
+            background: transparent;
+            padding: 12px 24px;
+            margin: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .calculator {
+            width: 300px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.5);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            color: white;
+        }
+        #result {
+            font-size: 20px;
+            margin-top: 15px;
+            color: #333;
+        }
+        .reset {
+            background: linear-gradient(45deg, #6c757d, #495057);
+        }
+        .reset:hover {
+            background: linear-gradient(45deg, #495057, #6c757d);
+        }
+        @media (max-width: 480px) {
+            .calculator {
+                width: 90%;
+                padding: 15px;
+            }
+            input {
+                width: 100%;
+            }
+            .btn {
+                width: 22%;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Calculator</h2>
+        <input type="number" id="q1" placeholder="Enter first number">
+        <input type="number" id="q2" placeholder="Enter second number">
+        <br><br>
+        <button class="btn" onclick="calculate('add')">+</button>
+        <button class="btn" onclick="calculate('sub')">-</button>
+        <button class="btn" onclick="calculate('mul')">*</button>
+        <button class="btn" onclick="calculate('div')">/</button>
+        <button class="btn reset" onclick="resetCalc()">Reset</button>
+        <h3 id="result">Result: </h3>
+    </div>
+
+    <script>
+        function calculate(operation) {
+            let n1 = parseFloat(document.getElementById("q1").value);
+            let n2 = parseFloat(document.getElementById("q2").value);
+
+            if (isNaN(n1) || isNaN(n2)) {
+                showResult("Please enter both numbers");
+                return;
+            }
+
+            let result;
+            switch (operation) {
+                case 'add': result = n1 + n2; break;
+                case 'sub': result = n1 - n2; break;
+                case 'mul': result = n1 * n2; break;
+                case 'div': 
+                    result = (n2 === 0) ? "Cannot divide by zero!" : n1 / n2; 
+                    break;
+            }
+            showResult(result);
+        }
+
+        function showResult(value) {
+            document.getElementById("result").innerText = "Result: " + value;
+        }
+
+        function resetCalc() {
+            document.getElementById("q1").value = "";
+            document.getElementById("q2").value = "";
+            document.getElementById("result").innerText = "Result: ";
+        }
+    </script>
+</body>
+</html>
